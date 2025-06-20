@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SIN-News - Daily Digest</title>
-  <link rel="icon" href="SIN-Logo-removebg-black.svg">
+  <link rel="icon" href="../images/SIN-Logo-removebg-black.svg">
   <style>
     html {
       scroll-behavior: smooth;
@@ -26,7 +26,7 @@
     header {
       margin-top: 1rem;
       text-align: center;
-      padding: 2rem 1rem 1rem 0.5rem;
+      padding: 2rem 1rem 1rem 2rem;
       border-bottom: 4px double #999;
     }
 
@@ -266,6 +266,42 @@
       background-color: #eee;
       color: #111;
     }
+
+    #scrollToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #fff;
+      color: #111;
+      border: 1px solid #111;
+      font-family: 'Times New Roman', serif;
+      padding: 0.5rem 1rem;
+      /*border-radius: 5px;*/
+      cursor: pointer;
+      display: none;
+      z-index: 999;
+      /*box-shadow: 2px 2px 4px rgba(0,0,0,0.2);*/
+      transition: all 0.3s ease;
+    }
+
+    #scrollToTop:hover {
+      background: #222;
+      color: #fff;
+      border-color: #222;
+    }
+
+    body.dark-mode #scrollToTop {
+      background: #333;
+      color: #eee;
+      border: 1px solid #eee;
+    }
+
+    body.dark-mode #scrollToTop:hover {
+      background: #eee;
+      color: #111;
+      border-color: #eee;
+    }
+
   </style>
 </head>
 <body>
@@ -278,7 +314,8 @@
   </div>
 
   <header>
-    <h1><img id="site-logo" src="SIN-Logo-removebg-black.svg" alt="Logo"> SIN-News</h1>
+    
+    <h1><img id="site-logo" src="../images/SIN-Logo-removebg-black.svg" alt="Logo"> SIN-News</h1>
     <div class="subheader" id="live-date"></div>
   </header>
 
@@ -296,7 +333,7 @@
 
   <div class="news-container" id="news">
     <!-- News cards go here -->
-     <div class="news-card India Sports">
+     <div class="news-card India">
       <div class="headline">Five students to represent India at 2025 International Olympiad on Astronomy and Astrophysics</div>
       <div class="meta">June 20, 2025 — 10:00 AM IST</div>
       <div class="summary">Five students will represent India at the 2025 International Olympiad for Astronomy and Astrophysics (IOAA) in Mumbai this August. The selection followed a rigorous national test and a comprehensive camp at IISER Mohali, where 37 talented students from across the country trained in theory and practical astronomy. The camp, which concluded on June 11, featured hands-on telescope sessions and sky observations. The final team was chosen from a pool that began with nearly 500 participants and was whittled down to 54, then 37, before the top five were selected</div>
@@ -310,7 +347,7 @@
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">Indian and British Navies Join Forces in Arabian Sea Maneuvers</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">The Indian Navy and the UK’s Carrier Strike Group, led by HMS Prince of Wales, conducted a joint maritime exercise in the northern Arabian Sea on June 9–10, 2025. The Indian side included the stealth frigate INS Tabar, a submarine, and a P-8I patrol aircraft. The UK’s group featured HMS Richmond and advanced F-35B jets. The drills focused on helicopter operations, anti-submarine warfare, and professional exchanges, highlighting deepening Indo-UK naval cooperation	</div>
@@ -327,18 +364,18 @@
       <div class="tags">Sponsored</div>
     </div> -->
 
-    <div class="news-card World Technology">
+    <div class="news-card India">
       <div class="headline">Delhi Battles Scorching Heat as Temperatures Surge Past 45°C</div>
       <div class="meta">June 20, 2025 — 8:00 AM IST</div>
       <div class="summary">Delhi is under a red alert as temperatures soared above 45°C on June 11, 2025, with Ayanagar recording 45.5°C and Safdarjung at 43.8°C—far above seasonal norms. The India Meteorological Department warns of continued severe heatwave conditions until June 13, when some relief is expected from light rain and thunderstorms. Authorities urge residents to avoid outdoor exposure and stay hydrated due to high risks of heat-related illnesses	</div>
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card India Sports">
+    <div class="news-card India">
       <div class="headline">Indian Railways Tests Early Confirmation for Waitlisted Passengers</div>
       <div class="meta">June 20, 2025 — 10:00 AM IST</div>
       <div class="summary">Indian Railways has launched a pilot project in the Bikaner Division to confirm waitlisted tickets 24 hours before train departure, instead of the current four-hour window. The trial aims to help travelers plan better by reducing uncertainty. If successful, the policy may be adopted nationwide. If a confirmed ticket is canceled between 48 and 12 hours before departure, only 25% of the fare is refunded; between 12 and 4 hours, 50% is refunded.</div>
-      <div class="tags">Category: India, Sports</div>
+      <div class="tags">Category: India</div>
     </div>
 
     <div class="news-card India">
@@ -348,46 +385,172 @@
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">Heavy Rain Predicted for 10 Telangana Districts on June 12</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">The India Meteorological Department has issued a heavy rainfall alert for 10 districts in Telangana on June 12, 2025, with thundershowers and gusty winds expected statewide from June 10–12. The affected districts include Mahabubnagar, Nagarkurnool, Wanaparthy, Narayanpet, and Jogulamba Gadwal. Scattered light rain is also likely in other districts, including Hyderabad, due to cyclonic activity in the Bay of Bengal.</div>
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">Kerala Extends School Hours for Grades 8–10 to Meet Education Act Standards</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">The Kerala government has increased school hours for students in Classes VIII to X by half an hour to meet the requirements of the Right to Education Act. This adjustment aims to ensure that schools provide the mandated instructional hours, enhancing learning outcomes and compliance with national education standards.	</div>
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">Congress Chief Slams Modi for Not Filling Lok Sabha Deputy Speaker Post</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">Congress President Mallikarjun Kharge has criticized Prime Minister Narendra Modi for leaving the Lok Sabha Deputy Speaker position vacant for two consecutive terms, calling it unconstitutional. Kharge, in a letter to the PM, noted that the post has traditionally gone to the principal opposition party and is crucial for parliamentary functioning. The position has remained empty since the 17th Lok Sabha, breaking a long-standing convention.</div>
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">Jaishankar Applauds European Parliament Support for Stronger India-EU Ties</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">External Affairs Minister S. Jaishankar, during his visit to Belgium and Luxembourg, welcomed European Parliament members’ backing for stronger India-EU relations and their understanding of India’s right to defend itself against terrorism. Jaishankar met leaders including Angelika Niebler and European Commission President Ursula von der Leyen, who condemned recent terror attacks in India. The minister also met King Philippe of Belgium and discussed global and regional issues.</div>
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">Two Workers Killed in Explosion at Tamil Nadu Fireworks Unit</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">Two workers died in an explosion at a fireworks manufacturing unit near Kariyapatti in Tamil Nadu. The incident underscores ongoing safety concerns in the region’s fireworks industry, which has seen similar tragedies in the past.	</div>
       <div class="tags">Category: India</div>
     </div>
 
-    <div class="news-card World Science">
+    <div class="news-card India">
       <div class="headline">India Protests Ill-Treatment of Citizen at Newark Airport</div>
       <div class="meta">June 20, 2025 — 8:45 AM IST</div>
       <div class="summary">India has formally raised concerns with the United States regarding the alleged ill-treatment of an Indian national at Newark airport. The incident has prompted diplomatic discussions to ensure the fair treatment of Indian citizens traveling abroad.</div>
       <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">India Sets New Limits for Air Conditioner Temperatures to Save Energy</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">The Indian government is finalizing a framework to standardize air conditioner (AC) temperature settings between 20°C and 28°C, as announced by Union Power Minister Manohar Lal. This move aims to curb excessive energy use and reduce peak power demand, especially during summers. Power Secretary Pankaj Agarwal highlighted that cooling demand accounts for about 50 GW—roughly one-fifth of India’s peak power demand. There are currently 10 crore ACs in India, with 1.5 crore added each year. Industry leaders like Voltas, LG, Blue Star, and Haier support the move, which will require minor software updates and take up to six months to implement.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">Congress Accuses Modi Government of Misusing Anti-Terror Law to Silence Critics</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Congress leader Pawan Khera has accused the Modi government of misusing the Unlawful Activities (Prevention) Act (UAPA) to suppress dissent. In a statement on Wednesday, Khera alleged that the law is being weaponized against critics and political opponents. The Congress party is urging Prime Minister Narendra Modi to hold a debate on national security and foreign policy during the upcoming monsoon session of Parliament, following security concerns after a recent incident in Pahalgam. The party claims the government’s approach is undermining democratic freedoms and due process.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">Court Denies Bail to YouTuber Accused of Espionage for Pakistan</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">A Hisar court on Wednesday denied bail to YouTuber Jyoti Malhotra, who was arrested in May 2025 on charges of spying for Pakistan. Her judicial custody was extended by two weeks until June 23. Malhotra’s lawyer, Kumar Mukesh, argued that the prosecution lacks strong evidence and noted that police found no military or sensitive information in her possession. The FIR includes sections under the Official Secrets Act and the Bharatiya Nyaya Sanhita. Malhotra is accused of being in contact with a Pakistani High Commission staffer and is alleged to have been groomed as an asset by Pakistani intelligence.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">Supreme Court Upholds Sub-Categorization for SC Reservations, Says CJI Gavai</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Chief Justice of India (CJI) D.Y. Chandrachud has stated that the Supreme Court’s recent ruling on sub-categorization within Scheduled Caste (SC) reservations ensures the “most marginalized receive a fair share.” The verdict clarifies that states have the authority to create sub-groups among SCs for reservation in jobs and education, aiming to address disparities within the community. This decision is expected to have significant implications for reservation policies across India, promoting equitable distribution of benefits and opportunities for the most disadvantaged sections of society.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card Business">
+      <div class="headline">Jio and BlackRock Venture Gets Regulatory Approval for Investment Advisory</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">The Securities and Exchange Board of India (SEBI) granted approval to Jio BlackRock Investment Advisers Private Limited (JBIAPL) to operate as an investment adviser on June 10, 2025. JBIAPL is a 50:50 joint venture between Jio Financial Services and global asset management giant BlackRock. Earlier in May, Jio BlackRock Asset Management received final approval to launch its mutual fund business, bringing the number of mutual fund participants in India’s ₹70 trillion industry to 48. Jio Financial Services reported a total income of ₹518 crore in Q4 FY25, with assets under management (AUM) at ₹10,053 crore as of March 31, 2025.</div>
+      <div class="tags">Category: Business</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">Turkey Secures Landmark Deal to Export 48 Fighter Jets to Indonesia</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Turkey’s President Recep Tayyip Erdogan announced on Wednesday that Turkey will export 48 domestically produced KAAN fighter jets to Indonesia, marking the first export agreement for the advanced aircraft. The agreement was finalized during the Indo Defence 2025 exhibition in Jakarta. The KAAN, Turkey’s first indigenous fifth-generation fighter jet, completed its maiden flight in 2024 and is expected to be delivered starting in 2028. The deal highlights deepening defense ties between Turkey and Indonesia, and both Pakistan and Azerbaijan have also shown interest in acquiring the KAAN jets.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">Canada Opens Express Entry for Indian Nurses, Bypasses Job Offer Requirement</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Canada is encouraging Indian nurses to apply for permanent residency through its Express Entry program, now allowing them to do so without a prior job offer. This policy change aims to address Canada’s severe nursing shortage and attract skilled healthcare professionals from India. The move is expected to streamline the immigration process for qualified nurses, offering them a faster and more direct path to Canadian residency and employment in the healthcare sector.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">Germany Advises Indian Students to Beware of Agents Offering ‘Complete Packages’</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">German authorities have issued a warning to Indian students planning to study in Germany, urging them to avoid agents who offer “complete package” deals. The advisory highlights the risks of fraud and exploitation, advising students to consult official sources and accredited institutions when applying for visas and university admissions. This comes amid increasing interest among Indian students in pursuing higher education in Germany, where robust academic and professional opportunities are available.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">Strong Earthquake Shakes Taiwan; No Casualties Reported</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">A 5.9 magnitude earthquake struck Taiwan, causing significant shaking but resulting in no reported loss of life. The tremor, which occurred on June 11, 2025, was felt across parts of the island, with some minor damage reported to infrastructure in certain areas. Authorities quickly assessed the situation and confirmed there were no casualties, reassuring residents and visitors. The event, while notable, is unrelated to India or its territory. Emergency services remain on alert for potential aftershocks, but life has largely returned to normal.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card Business">
+      <div class="headline">Two Public-Sector Firms Postpone Bond Sales Amid RBI Policy Swings</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Two Public-Sector Firms Postpone Bond Sales Amid RBI Policy Swings.</div>
+      <div class="tags">Category: Business</div>
+    </div>
+
+    <div class="news-card Technology">
+      <div class="headline">India’s AI Market Poised to Triple, Hit $17 Billion by 2027</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">A report by Boston Consulting Group (BCG) forecasts that India’s artificial intelligence (AI) market will triple in value, reaching $17 billion by 2027. The growth is driven by increased adoption of AI technologies across industries such as healthcare, finance, and manufacturing, as well as supportive government policies and investment in digital infrastructure. The report highlights India’s potential to become a global leader in AI innovation and application, with both startups and established firms contributing to the sector’s rapid expansion.</div>
+      <div class="tags">Category: Technology</div>
+    </div>
+
+    <div class="news-card Business">
+      <div class="headline">Recur Club Targets Early-Stage Firms for Rs 2,000 Crore Investment in FY26</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Recur Club, a revenue-based financing platform, is planning to invest up to Rs 2,000 crore in early and mid-stage Indian companies during the 2025–26 financial year. The initiative aims to support startups and growth-stage firms by providing non-dilutive capital, enabling them to expand operations, scale up, and navigate funding challenges. Recur Club’s focus on flexible financing solutions is expected to play a crucial role in fostering innovation and entrepreneurship across India’s startup ecosystem.</div>
+      <div class="tags">Category: Business</div>
+    </div>
+
+    <div class="news-card Sports">
+      <div class="headline">Former Football Stars Criticize AIFF Following India’s Defeat to Hong Kong</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Prominent Indian football legends have publicly criticized the All India Football Federation (AIFF) after the national team’s disappointing 0-1 loss to Hong Kong in the AFC Asian Cup 2027 qualifiers on June 10, 2025. The match, played at Kai Tak Stadium, saw India concede a penalty in injury time, resulting in a narrow defeat that leaves the team struggling in Group C with just one point from two matches. The former players pointed to tactical errors, missed opportunities, and questioned the federation’s long-term planning and player development strategies, urging reforms to improve India’s international football competitiveness.</div>
+      <div class="tags">Category: Sports</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">Anti-Migrant Rioters Set Homes and Refuge Shelter Ablaze in Northern Ireland</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">In Ballymena, Northern Ireland, hundreds of masked rioters launched violent attacks over three consecutive nights, targeting police, setting homes, vehicles, and a leisure centre sheltering migrants on fire. The unrest began after two 14-year-old boys were accused of assaulting a local girl, sparking racial tensions in the town of 30,000 with a significant migrant population. Several families, including Filipino residents, fled their homes fearing for their safety. Authorities condemned the violence as hate crimes, with 32 police officers injured. Political leaders, including UK Prime Minister Keir Starmer, denounced the attacks and called for peace and order.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">China’s Strategy: Delaying Talks to Strengthen Position Against Trump</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">China, under President Xi Jinping, is employing a strategy of prolonging trade negotiations with the U.S. to bolster its economic and manufacturing capabilities. Since April 2025, amid President Trump’s tariffs aimed at reducing Chinese exports and increasing American purchases, China has focused on delaying substantive agreements by emphasizing procedural talks, such as establishing negotiation frameworks. This tactic leverages China’s control over critical minerals essential to the U.S. economy, frustrating American efforts to address unfair trade practices. Analysts view this as a calculated move to maintain economic advantage while avoiding concessions.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">Austrian School Shooter Was Isolated Loner Rejected by Army, Officials Say</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Austrian authorities revealed that the 21-year-old gunman responsible for the recent school shooting, which killed ten people, was a socially isolated individual who failed to graduate high school twice and was rejected by the army. Despite passing the psychological test required for firearm ownership, concerns remain over how he acquired weapons. Police found a non-functional pipe bomb and plans for further attacks during a raid on his residence. The shooter lived with his mother in Kalsdorf near Graz, and investigators continue to piece together his motives and background.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">Dominican Club Owner Arrested Over Deadly Roof Collapse Killing 236</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Antonio Espaillat and his sister Maribel were arrested in the Dominican Republic following the April 2025 roof collapse at their nightclub that killed 236 people and injured over 180. Prosecutors accused them of negligence and failing to prevent the disaster. The club, famous for its Monday merengue parties, attracted many prominent figures, including singer Rubby Pérez and MLB players. Rescue teams worked nonstop for 53 hours to save 189 survivors. Investigations continue, with lawsuits filed by victims’ families against the Espaillats.</div>
+      <div class="tags">Category: World</div>
+    </div>
+
+    <div class="news-card World">
+      <div class="headline">FAA Urged to Release Whistleblower Report on Boeing 787 Dreamliner Safety</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Lawyers representing a whistleblower have called on the Federal Aviation Administration (FAA) to disclose a report concerning safety issues with Boeing’s 787 Dreamliner aircraft. The report is expected to contain critical findings related to design flaws or regulatory oversights. The call for transparency follows ongoing scrutiny of the 787’s safety record amid incidents and technical concerns, highlighting the importance of regulatory accountability in ensuring passenger safety.</div>
+      <div class="tags">Category: World</div>
     </div>
     
   </div>
@@ -396,8 +559,10 @@
     <button id="load-more">Load More</button>
   </div>
 
+  <button id="scrollToTop" onclick="scrollToTop()" style="margin-bottom: 0.7rem;">↑ Top</button>
+
   <script>
-    function filterNews(tag) {
+    /*function filterNews(tag) {
       const buttons = document.querySelectorAll('.filters button');
       buttons.forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
@@ -410,6 +575,48 @@
           card.style.display = card.classList.contains(tag) ? 'block' : 'none';
         }
       });
+    }*/
+
+    function filterNews(tag) {
+      const buttons = document.querySelectorAll('.filters button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const container = document.getElementById('news');
+      const allCards = Array.from(container.querySelectorAll('.news-card'));
+      
+      // Remove existing sponsor cards
+      allCards.forEach(card => {
+        if (card.classList.contains('sponsor-card')) card.remove();
+      });
+
+      // Apply filter
+      const filteredArticles = allCards.filter(card => {
+        if (card.classList.contains('sponsor-card')) return false;
+        if (tag === 'All') {
+          card.style.display = 'block';
+          return true;
+        } else if (card.classList.contains(tag)) {
+          card.style.display = 'block';
+          return true;
+        } else {
+          card.style.display = 'none';
+          return false;
+        }
+      });
+
+      // Reinsert sponsor cards after every 5 visible news cards
+      const interval = 5;
+      const shuffledSponsors = shuffle([...sponsors]);
+      let sponsorCounter = 0;
+
+      for (let i = interval; i <= filteredArticles.length; i += interval) {
+        const target = filteredArticles[i - 1];
+        const sponsor = shuffledSponsors[sponsorCounter % shuffledSponsors.length];
+        const sponsorCard = createSponsorCard(sponsor);
+        container.insertBefore(sponsorCard, target.nextSibling);
+        sponsorCounter++;
+      }
     }
 
     function toggleTheme() {
@@ -417,9 +624,9 @@
 
       const logo = document.getElementById('site-logo');
       if (document.body.classList.contains('dark-mode')) {
-        logo.src = "SIN-Logo-removebg.svg"; // white version
+        logo.src = "../images/SIN-Logo-removebg.svg"; // white version
       } else {
-        logo.src = "SIN-Logo-removebg-black.svg"; // black version
+        logo.src = "../images/SIN-Logo-removebg-black.svg"; // black version
       }
     }
 
@@ -427,35 +634,20 @@
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById("live-date").innerText = now.toLocaleDateString('en-IN', options);
 
-    function readSummary(btn) {
-      const summary = btn.parentElement.querySelector('.summary').innerText;
-      const speech = new SpeechSynthesisUtterance(summary);
-      speech.lang = 'en-IN';
-      window.speechSynthesis.speak(speech);
-    }
-
-    function saveArticle(btn) {
-      const card = btn.closest('.news-card');
-      const headline = card.querySelector('.headline').innerText;
-      const summary = card.querySelector('.summary').innerText;
-      localStorage.setItem(headline, summary);
-      alert('Article saved!');
-    }
-
     const sponsors = [
       {
         name: "Zomato",
-        logo: "zomato.png",
+        logo: "../images/zomato.png",
         description: "Buy 2 Get 1 Free Only on Zomato",
         link: "https://education.sin.org.in",
-        ad: "zomato-ad.jpg"
+        ad: "../images/zomato-ad.jpg"
       },
       {
         name: "SIN-One",
-        logo: "SIN-Logo-removebg-black.svg",
+        logo: "../images/SIN-Logo-removebg-black.svg",
         description: "Excel UPSC with SIN-Education - 1M+ users",
         link: "https://education.sin.org.in",
-        ad: "SIN-Logo-removebg-black.svg"
+        ad: "../images/SIN-Logo-removebg-black.svg"
       }
     ];
 
@@ -578,7 +770,7 @@
     // Call on page load
     updateTickerForToday();
 
-    let visibleArticles = 5;
+    let visibleArticles = 10;
 
     function updateVisibleArticles() {
       const articles = document.querySelectorAll('.news-card:not(.sponsor-card)');
@@ -593,7 +785,7 @@
     }
 
     document.getElementById('load-more').addEventListener('click', () => {
-      visibleArticles += 6;
+      visibleArticles += 10;
       updateVisibleArticles();
       insertSponsorAds(); // re-insert sponsor ads after more articles show
     });
@@ -605,6 +797,26 @@
         location.reload();
       }
     });
+
+    // Show/hide scroll to top button
+    window.addEventListener('scroll', () => {
+      const scrollBtn = document.getElementById('scrollToTop');
+      if (window.scrollY > 500) {
+        scrollBtn.style.display = 'block';
+      } else {
+        scrollBtn.style.display = 'none';
+      }
+    });
+
+    // Smooth scroll to top
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Optional: show reload hint
+      setTimeout(() => {
+        alert("🔄 Tap your browser’s reload button to get the latest news.");
+      }, 1000);
+    }
 
   </script>
 </body>
