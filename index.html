@@ -218,7 +218,7 @@
     .ticker {
       display: flex;
       width: max-content;
-      animation: scroll 100s linear infinite;
+      animation: scroll 140s linear infinite;
     }
 
     .ticker-item {
@@ -560,22 +560,6 @@
 
     // Call on page load
     updateTickerForToday();
-
-    function enableReelsModeIfScrolledPastFilters() {
-      const filters = document.querySelector('.filters');
-      const filtersBottom = filters.getBoundingClientRect().bottom;
-
-      if (window.innerWidth <= 768) {
-        if (filtersBottom <= 0) {
-          document.body.classList.add('reels-mode');
-        } else {
-          document.body.classList.remove('reels-mode');
-        }
-      }
-    }
-
-    window.addEventListener('scroll', enableReelsModeIfScrolledPastFilters);
-    window.addEventListener('resize', enableReelsModeIfScrolledPastFilters);
 
   </script>
 </body>
