@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIN-News - Daily Digest</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    body {
+      margin: 0;
+      font-family: 'Times New Roman', Times, serif;
+      background: #fff;
+      color: #111;
+      line-height: 1.6;
+    }
+
+    body.dark-mode {
+      background: #1e1e1e;
+      color: #eee;
+    }
+
+    header {
+      margin-top: 1rem;
+      text-align: center;
+      padding: 2rem 1rem 1rem 2rem;
+      border-bottom: 4px double #999;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .subheader {
+      font-size: 1.1rem;
+      color: #555;
+      font-style: italic;
+    }
+
+    /*.filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1rem;
+      border-top: 2px dashed #999;
+      border-bottom: 2px dashed #999;
+      background: #f9f9f9;
+    }*/
+
+    .filters {
+      display: flex;
+      position: sticky;
+      top: 2.2rem; /* Height of ticker + padding (adjust as needed) */
+      z-index: 998;
+      background: #f9f9f9;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      padding: 0.5rem;
+      padding-top: 0.8rem;
+      border-bottom: 2px dashed #999;
+      
+    }
+
+    body.dark-mode .filters {
+      background: #333;
+      color: #ccc;
+    }
+
+    .filters button {
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px solid #ccc;
+      font-family: 'Times New Roman', serif;
+      cursor: pointer;
+    }
+
+    .filters button:hover,
+    .filters button.active {
+      background: #222;
+      color: #fff;
+      border-color: #222;
+    }
+
+    body.dark-mode .filters button {
+      background: #333;
+      color: #ccc;
+    }
+
+    body.dark-mode .filters button:hover,
+    body.dark-mode .filters button.active {
+      background: #eee;
+      color: #111;
+    }
+
+    .news-container {
+      padding: 2rem 1rem;
+      max-width: 960px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .news-card {
+      background: #fff;
+      border: 1px solid #ccc;
+      padding: 1rem;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.05);
+      position: relative;
+    }
+
+    body.dark-mode .news-card {
+      background: #2c2c2c;
+      border-color: #fff;
+    }
+
+    .news-card::before {
+      content: "🗞️";
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 1.2rem;
+      opacity: 0.2;
+    }
+
+    .headline {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 0.4rem;
+      font-family: 'Georgia', serif;
+    }
+
+    .meta {
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 0.6rem;
+    }
+
+    .summary {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tags {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: #888;
+    }
+
+    /*.India { border-left: 4px solid #c0392b; }
+    .World { border-left: 4px solid #2980b9; }
+    .Sports { border-left: 4px solid #27ae60; }
+    .Business { border-left: 4px solid #d35400; }
+    .Science { border-left: 4px solid #8e44ad; }
+    .Technology { border-left: 4px solid #2c3e50; }*/
+
+    .India { border-left: 4px solid #000; }
+    .World { border-left: 4px solid #000; }
+    .Sports { border-left: 4px solid #000; }
+    .Business { border-left: 4px solid #000; }
+    .Science { border-left: 4px solid #000; }
+    .Technology { border-left: 4px solid #000; }
+
+    @media screen and (max-width: 768px) {
+      .news-container {
+        grid-template-columns: 1fr;
+      }
+
+      body.reels-mode .news-container {
+        display: block;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+      }
+
+      body.reels-mode .news-card {
+        scroll-snap-align: start;
+        min-height: 100vh;
+        padding: 1.5rem;
+        box-sizing: border-box;
+        overflow-y: auto;
+      }
+    }
+
+
+    /*.ticker-wrap {
+      overflow: hidden;
+      background: #222;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      border-bottom: 2px solid #999;
+    }*/
+
+    .ticker-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: #222;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      font-size: 0.9rem;
+      padding: 0.5rem;
+      border-bottom: 2px solid #999;
+    }
+
+    .ticker {
+      display: flex;
+      width: max-content;
+      animation: scroll 100s linear infinite;
+    }
+
+    .ticker-item {
+      margin-right: 3rem;
+      white-space: nowrap;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .sponsor-card {
+      background: #fff8e1;
+      border: 2px dashed #f39c12;
+      font-family: 'Georgia', serif;
+    }
+
+    body.dark-mode .sponsor-card {
+      background: #3b2d00;
+      border-color: #f1c40f;
+      color: #f1f1f1;
+    }
+
+    .sponsor-card .headline {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #d35400;
+    }
+
+    body.dark-mode .sponsor-card .headline {
+      color: #f39c12;
+    }
+  </style>
+</head>
+<body>
+  <button onclick="toggleTheme()" style="position:fixed;top:10px;right:10px;z-index:1000;">🌓 Theme</button>
+
+  <div class="ticker-wrap">
+    <div class="ticker" id="live-ticker">
+      
+    </div>
+  </div>
+
+  <header>
+    
+    <h1><img id="site-logo" src="../images/SIN-Logo-removebg-black.svg" alt="Logo"> SIN-News</h1>
+    <div class="subheader" id="live-date"></div>
+  </header>
+
+  <!-- Filters and News follow unchanged -->
+
+  <div class="filters">
+    <button class="active" onclick="filterNews('All')">All</button>
+    <button onclick="filterNews('India')">India</button>
+    <button onclick="filterNews('World')">World</button>
+    <button onclick="filterNews('Sports')">Sports</button>
+    <button onclick="filterNews('Business')">Business</button>
+    <button onclick="filterNews('Science')">Science</button>
+    <button onclick="filterNews('Technology')">Technology</button>
+  </div>
+
+  <div class="news-container" id="news">
+    <!-- News cards go here -->
+     <div class="news-card India Sports">
+      <div class="headline">Five students to represent India at 2025 International Olympiad on Astronomy and Astrophysics</div>
+      <div class="meta">June 20, 2025 — 10:00 AM IST</div>
+      <div class="summary">Five students will represent India at the 2025 International Olympiad for Astronomy and Astrophysics (IOAA) in Mumbai this August. The selection followed a rigorous national test and a comprehensive camp at IISER Mohali, where 37 talented students from across the country trained in theory and practical astronomy. The camp, which concluded on June 11, featured hands-on telescope sessions and sky observations. The final team was chosen from a pool that began with nearly 500 participants and was whittled down to 54, then 37, before the top five were selected</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">Telangana Pushes Harder to Settle Unresolved Issues with Andhra Pradesh</div>
+      <div class="meta">June 20, 2025 — 9:30 AM IST</div>
+      <div class="summary">Telangana is intensifying efforts to resolve lingering disputes with Andhra Pradesh, stemming from the 2014 state bifurcation. Both states have set up two committees—one with ministers, the other with officials—to address the division of assets and liabilities. Despite a decade of negotiations, disagreements persist, especially over assets outside the former united state, such as Andhra Pradesh Bhavan in Delhi. The Union government retains the authority to intervene if the impasse continues	</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">Indian and British Navies Join Forces in Arabian Sea Maneuvers</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">The Indian Navy and the UK’s Carrier Strike Group, led by HMS Prince of Wales, conducted a joint maritime exercise in the northern Arabian Sea on June 9–10, 2025. The Indian side included the stealth frigate INS Tabar, a submarine, and a P-8I patrol aircraft. The UK’s group featured HMS Richmond and advanced F-35B jets. The drills focused on helicopter operations, anti-submarine warfare, and professional exchanges, highlighting deepening Indo-UK naval cooperation	</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <!-- Sponsor Block Here -->
+    <!-- <div class="news-card sponsor-card">
+      <div class="headline">🌟 Sponsored by EduRank</div>
+      <div class="summary">
+        Discover top UPSC strategies from EduRank — India's trusted learning partner. <br />
+        <a href="https://edurank.in" target="_blank">Visit EduRank.in →</a>
+      </div>
+      <div class="tags">Sponsored</div>
+    </div> -->
+
+    <div class="news-card World Technology">
+      <div class="headline">Delhi Battles Scorching Heat as Temperatures Surge Past 45°C</div>
+      <div class="meta">June 20, 2025 — 8:00 AM IST</div>
+      <div class="summary">Delhi is under a red alert as temperatures soared above 45°C on June 11, 2025, with Ayanagar recording 45.5°C and Safdarjung at 43.8°C—far above seasonal norms. The India Meteorological Department warns of continued severe heatwave conditions until June 13, when some relief is expected from light rain and thunderstorms. Authorities urge residents to avoid outdoor exposure and stay hydrated due to high risks of heat-related illnesses	</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card India Sports">
+      <div class="headline">Indian Railways Tests Early Confirmation for Waitlisted Passengers</div>
+      <div class="meta">June 20, 2025 — 10:00 AM IST</div>
+      <div class="summary">Indian Railways has launched a pilot project in the Bikaner Division to confirm waitlisted tickets 24 hours before train departure, instead of the current four-hour window. The trial aims to help travelers plan better by reducing uncertainty. If successful, the policy may be adopted nationwide. If a confirmed ticket is canceled between 48 and 12 hours before departure, only 25% of the fare is refunded; between 12 and 4 hours, 50% is refunded.</div>
+      <div class="tags">Category: India, Sports</div>
+    </div>
+
+    <div class="news-card India">
+      <div class="headline">Congress Accuses Modi Government of 11 Years of Missteps and Broken Promises</div>
+      <div class="meta">June 20, 2025 — 9:30 AM IST</div>
+      <div class="summary">Congress President Mallikarjun Kharge has accused Prime Minister Narendra Modi’s government of failing on key promises over its 11-year tenure, citing 33 alleged mistakes including unfulfilled commitments on jobs and minimum support prices. Kharge claims the government has misled youth and the poor for votes and has not admitted to its errors. Modi began his third term as PM on June 9, 2024.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">Heavy Rain Predicted for 10 Telangana Districts on June 12</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">The India Meteorological Department has issued a heavy rainfall alert for 10 districts in Telangana on June 12, 2025, with thundershowers and gusty winds expected statewide from June 10–12. The affected districts include Mahabubnagar, Nagarkurnool, Wanaparthy, Narayanpet, and Jogulamba Gadwal. Scattered light rain is also likely in other districts, including Hyderabad, due to cyclonic activity in the Bay of Bengal.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">Kerala Extends School Hours for Grades 8–10 to Meet Education Act Standards</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">The Kerala government has increased school hours for students in Classes VIII to X by half an hour to meet the requirements of the Right to Education Act. This adjustment aims to ensure that schools provide the mandated instructional hours, enhancing learning outcomes and compliance with national education standards.	</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">Congress Chief Slams Modi for Not Filling Lok Sabha Deputy Speaker Post</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Congress President Mallikarjun Kharge has criticized Prime Minister Narendra Modi for leaving the Lok Sabha Deputy Speaker position vacant for two consecutive terms, calling it unconstitutional. Kharge, in a letter to the PM, noted that the post has traditionally gone to the principal opposition party and is crucial for parliamentary functioning. The position has remained empty since the 17th Lok Sabha, breaking a long-standing convention.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">Jaishankar Applauds European Parliament Support for Stronger India-EU Ties</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">External Affairs Minister S. Jaishankar, during his visit to Belgium and Luxembourg, welcomed European Parliament members’ backing for stronger India-EU relations and their understanding of India’s right to defend itself against terrorism. Jaishankar met leaders including Angelika Niebler and European Commission President Ursula von der Leyen, who condemned recent terror attacks in India. The minister also met King Philippe of Belgium and discussed global and regional issues.</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">Two Workers Killed in Explosion at Tamil Nadu Fireworks Unit</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">Two workers died in an explosion at a fireworks manufacturing unit near Kariyapatti in Tamil Nadu. The incident underscores ongoing safety concerns in the region’s fireworks industry, which has seen similar tragedies in the past.	</div>
+      <div class="tags">Category: India</div>
+    </div>
+
+    <div class="news-card World Science">
+      <div class="headline">India Protests Ill-Treatment of Citizen at Newark Airport</div>
+      <div class="meta">June 20, 2025 — 8:45 AM IST</div>
+      <div class="summary">India has formally raised concerns with the United States regarding the alleged ill-treatment of an Indian national at Newark airport. The incident has prompted diplomatic discussions to ensure the fair treatment of Indian citizens traveling abroad.</div>
+      <div class="tags">Category: India</div>
+    </div>
+    
+  </div>
+
+  <script>
+    function filterNews(tag) {
+      const buttons = document.querySelectorAll('.filters button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+
+      const cards = document.querySelectorAll('.news-card');
+      cards.forEach(card => {
+        if (tag === 'All') {
+          card.style.display = 'block';
+        } else {
+          card.style.display = card.classList.contains(tag) ? 'block' : 'none';
+        }
+      });
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+
+      const logo = document.getElementById('site-logo');
+      if (document.body.classList.contains('dark-mode')) {
+        logo.src = "../images/SIN-Logo-removebg.svg"; // white version
+      } else {
+        logo.src = "../images/SIN-Logo-removebg-black.svg"; // black version
+      }
+    }
+
+    const now = new Date();
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById("live-date").innerText = now.toLocaleDateString('en-IN', options);
+
+    function readSummary(btn) {
+      const summary = btn.parentElement.querySelector('.summary').innerText;
+      const speech = new SpeechSynthesisUtterance(summary);
+      speech.lang = 'en-IN';
+      window.speechSynthesis.speak(speech);
+    }
+
+    function saveArticle(btn) {
+      const card = btn.closest('.news-card');
+      const headline = card.querySelector('.headline').innerText;
+      const summary = card.querySelector('.summary').innerText;
+      localStorage.setItem(headline, summary);
+      alert('Article saved!');
+    }
+
+    const sponsors = [
+      {
+        name: "Zomato",
+        logo: "../images/zomato.png",
+        description: "Buy 2 Get 1 Free Only on Zomato",
+        link: "https://education.sin.org.in",
+        ad: "../images/zomato-ad.jpg"
+      },
+      {
+        name: "SIN-One",
+        logo: "../images/SIN-Logo-removebg-black.svg",
+        description: "Excel UPSC with SIN-Education - 1M+ users",
+        link: "https://education.sin.org.in",
+        ad: "../images/SIN-Logo-removebg-black.svg"
+      }
+    ];
+
+    let sponsorIndex = 0;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function createSponsorCard(sponsor) {
+      const div = document.createElement('div');
+      div.className = 'news-card sponsor-card';
+      div.innerHTML = `
+        <div class="headline">
+          <img src="${sponsor.logo}" alt="${sponsor.name}" style="height: 30px; vertical-align: middle; margin-right: 10px;">
+          Sponsored by ${sponsor.name}
+        </div>
+        <div class="summary">
+          ${sponsor.description}<br />
+          <img src="${sponsor.ad}" alt="${sponsor.name}" style="height: 250px; width: 300px; vertical-align: middle; margin-right: 10px;"><br />
+          <a href="${sponsor.link}" target="_blank">Visit ${sponsor.name} →</a>
+        </div>
+        <div class="tags">Sponsored</div>
+      `;
+      return div;
+    }
+
+    function insertSponsorAds() {
+      const container = document.getElementById('news');
+      const allArticles = Array.from(container.querySelectorAll('.news-card'));
+      const realArticles = allArticles.filter(card => !card.classList.contains('sponsor-card'));
+
+      // Clear existing sponsor ads
+      allArticles.forEach(card => {
+        if (card.classList.contains('sponsor-card')) card.remove();
+      });
+
+      const interval = 5;
+      const shuffledSponsors = shuffle([...sponsors]);
+      let currentSponsor = 0;
+
+      for (let i = interval; i <= realArticles.length; i += interval) {
+        const target = realArticles[i - 1];
+        if (target) {
+          const sponsor = shuffledSponsors[currentSponsor % shuffledSponsors.length];
+          const sponsorCard = createSponsorCard(sponsor);
+          container.insertBefore(sponsorCard, target.nextSibling);
+          currentSponsor++;
+        }
+      }
+    }
+
+    // Initial insert
+    insertSponsorAds();
+
+    // Rotate every 30 seconds
+    setInterval(insertSponsorAds, 30000);
+
+    function updateTickerForToday() {
+      const ticker = document.getElementById('live-ticker');
+      ticker.innerHTML = ""; // Clear previous content
+
+      const today = new Date();
+      const todayStr = today.toISOString().split('T')[0]; // "2025-06-20"
+
+      const articles = document.querySelectorAll('.news-card:not(.sponsor-card)');
+      let headlinesToday = [];
+
+      articles.forEach(card => {
+        const meta = card.querySelector('.meta');
+        if (!meta) return;
+
+        const dateText = meta.innerText.trim().split('|')[0] || meta.innerText;
+        const dateOnly = extractDateFromText(dateText);
+
+        if (dateOnly === todayStr) {
+          const headline = card.querySelector('.headline')?.innerText;
+          if (headline) headlinesToday.push(headline);
+        }
+      });
+
+      // If less than 5 headlines, repeat them to fill loop
+      if (headlinesToday.length > 0) {
+        const multiplier = Math.ceil(10 / headlinesToday.length); // Ensure long enough scroll
+        let looped = [];
+
+        for (let i = 0; i < multiplier; i++) {
+          looped = looped.concat(headlinesToday);
+        }
+
+        ticker.innerHTML = looped
+          .map(text => `<div class="ticker-item">${text}</div>`)
+          .join('<div class="ticker-item">|</div>');
+      } else {
+        ticker.innerHTML = `<div class="ticker-item">No headlines published today.</div>`;
+      }
+
+      // Restart animation after injecting headlines
+      ticker.style.animation = 'none';           // Stop animation
+      void ticker.offsetWidth;                   // Trigger reflow
+      ticker.style.animation = '';               // Restart animation (uses CSS rule)
+    }
+
+    function extractDateFromText(dateStr) {
+      const parts = dateStr.match(/([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})/);
+      if (!parts) return "";
+
+      const monthNames = {
+        January: "01", February: "02", March: "03", April: "04", May: "05", June: "06",
+        July: "07", August: "08", September: "09", October: "10", November: "11", December: "12"
+      };
+
+      const month = monthNames[parts[1]];
+      const day = parts[2].padStart(2, '0');
+      const year = parts[3];
+
+      return `${year}-${month}-${day}`;
+    }
+
+    // Call on page load
+    updateTickerForToday();
+
+    function enableReelsModeIfScrolledPastFilters() {
+      const filters = document.querySelector('.filters');
+      const filtersBottom = filters.getBoundingClientRect().bottom;
+
+      if (window.innerWidth <= 768) {
+        if (filtersBottom <= 0) {
+          document.body.classList.add('reels-mode');
+        } else {
+          document.body.classList.remove('reels-mode');
+        }
+      }
+    }
+
+    window.addEventListener('scroll', enableReelsModeIfScrolledPastFilters);
+    window.addEventListener('resize', enableReelsModeIfScrolledPastFilters);
+
+  </script>
+</body>
+</html>
+
